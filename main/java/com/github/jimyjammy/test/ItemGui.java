@@ -72,7 +72,7 @@ public class ItemGui {
         itemGui.setItem(19, forge.makeGlass());
         itemGui.setItem(20, forge.makeGlass());
         itemGui.setItem(21, forge.makeGlass());
-        itemGui.setItem(22, forge.makeGlass());
+        itemGui.setItem(22, forge.makeFastTravel());
         itemGui.setItem(23, forge.makeGlass());
         itemGui.setItem(24, forge.makeGlass());
         itemGui.setItem(25, forge.makeGlass());
@@ -81,5 +81,50 @@ public class ItemGui {
         player.openInventory(itemGui);
 
         return true;
+    }
+
+    public static Inventory getFastTravel(){
+        Inventory inventory;
+        inventory = Bukkit.createInventory(null, 36, "Fast Travel");
+        inventory.setItem(0, ItemForge.makeGlass());
+        inventory.setItem(1, ItemForge.makeGlass());
+        inventory.setItem(2, ItemForge.makeGlass());
+        inventory.setItem(3, ItemForge.makeGlass());
+        inventory.setItem(4, ItemForge.makeGlass());
+        inventory.setItem(5, ItemForge.makeGlass());
+        inventory.setItem(6, ItemForge.makeGlass());
+        inventory.setItem(7, ItemForge.makeGlass());
+        inventory.setItem(8, ItemForge.makeGlass());
+
+        inventory.setItem(9, ItemForge.makeGlass());
+        inventory.setItem(10, ItemForge.makeSpawn());
+        inventory.setItem(11, ItemForge.makeGlass());
+        inventory.setItem(12, ItemForge.makeGlass());
+        inventory.setItem(13, ItemForge.makeGlass());
+        inventory.setItem(14, ItemForge.makeGlass());
+        inventory.setItem(15, ItemForge.makeGlass());
+        inventory.setItem(16, ItemForge.makeGlass());
+        inventory.setItem(17, ItemForge.makeGlass());
+
+        inventory.setItem(18, ItemForge.makeGlass());
+        inventory.setItem(19, ItemForge.makeGlass());
+        inventory.setItem(20, ItemForge.makeGlass());
+        inventory.setItem(21, ItemForge.makeGlass());
+        inventory.setItem(22, ItemForge.makeGlass());
+        inventory.setItem(23, ItemForge.makeGlass());
+        inventory.setItem(24, ItemForge.makeGlass());
+        inventory.setItem(25, ItemForge.makeGlass());
+        inventory.setItem(26, ItemForge.makeGlass());
+
+        inventory.setItem(27, ItemForge.makeGlass());
+        inventory.setItem(28, ItemForge.makeGlass());
+        inventory.setItem(29, ItemForge.makeGlass());
+        inventory.setItem(30, ItemForge.makeGlass());
+        inventory.setItem(31, ItemForge.makeGlass());
+        inventory.setItem(32, ItemForge.makeGlass());
+        inventory.setItem(33, ItemForge.makeGlass());
+        inventory.setItem(34, ItemForge.makeGlass());
+        inventory.setItem(35, ItemForge.makeGlass());
+        return inventory;
     }
 }

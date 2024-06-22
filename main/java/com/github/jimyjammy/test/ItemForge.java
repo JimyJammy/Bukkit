@@ -3,7 +3,7 @@ package com.github.jimyjammy.test;
 
 import java.util.ArrayList;
 import org.bukkit.inventory.meta.*;
-
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 
 import org.bukkit.inventory.ItemFlag;
@@ -69,6 +69,18 @@ public class ItemForge {
         return makeItem(m, name, lore, ammount);
     }
 
+    public static ItemStack makeSpawn(){
+
+        Material m = Material.NETHER_STAR;
+        String name = (ChatColor.BOLD + "Spawn");
+        String desc = (ChatColor.GRAY + "" + ChatColor.BOLD + "Click to go to spawn");
+
+        ArrayList<String> lore = new ArrayList<String>();
+        lore.add(desc);
+
+        return makeItem(m, name, lore, 1);
+    }
+
     public static ItemStack makeMenu2(){
 
         Material m = Material.NETHER_STAR;
@@ -87,5 +99,19 @@ public class ItemForge {
         lore.add(desc);
     
         return makeItem(m, name, lore, 1);
+    }
+
+    @SuppressWarnings("deprecation")
+    public static ItemStack makeFastTravel(){
+        Material m = Material.PLAYER_HEAD;
+        String name = (ChatColor.BLUE + "" + ChatColor.BOLD + "Fast Travel");
+
+        ArrayList<String> lore = new ArrayList<String>();
+    
+        ItemStack item = makeItem(m, name, lore, 1);
+        SkullMeta im = (SkullMeta)item.getItemMeta();
+        im.setOwningPlayer(Bukkit.getOfflinePlayer("tzoofe"));
+        item.setItemMeta(im);
+        return item;
     }
 }

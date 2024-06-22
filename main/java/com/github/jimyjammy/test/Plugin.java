@@ -36,8 +36,8 @@ public class Plugin extends JavaPlugin
     Long[] ericltimes = new Long[5];
     ericlines[0] = "Hello, my name is Eric the " + ChatColor.AQUA + "CLERIC" + ChatColor.RESET + "!";
     ericlines[1] = "I do all of the clericy things round here.";
-    ericlines[2] = "I helped create the art of " + ChatColor.MAGIC + "" + ChatColor.AQUA + "" + ChatColor.BOLD + "HI" + ChatColor.RESET + "" + ChatColor.AQUA + "" + ChatColor.BOLD + "LIFE CRAFTING" + ChatColor.MAGIC + "" + ChatColor.AQUA + "" + ChatColor.BOLD + "HI" + ChatColor.RESET + ".";
-    ericlines[3] = "I do all of the clericy things round here.";
+    ericlines[2] = "I helped create the art of " + ChatColor.AQUA + "" + ChatColor.BOLD + "" + ChatColor.MAGIC +"HI" + ChatColor.RESET + "" + ChatColor.AQUA + "" + ChatColor.BOLD + "LIFE CRAFTING" + ChatColor.AQUA + "" + ChatColor.BOLD + "" + ChatColor.MAGIC +"HI" + ChatColor.RESET + ".";
+    ericlines[3] = "Wait, do you not know what" + ChatColor.AQUA + "" + ChatColor.BOLD + "" + ChatColor.MAGIC +"HI" + ChatColor.RESET + "" + ChatColor.AQUA + "" + ChatColor.BOLD + "LIFE CRAFTING" + ChatColor.AQUA + "" + ChatColor.BOLD + "" + ChatColor.MAGIC +"HI" + ChatColor.RESET + " is?";
     ericlines[4] = "I do all of the clericy things round here.";
 
     ericltimes[0] = 0L;
@@ -63,10 +63,19 @@ public class Plugin extends JavaPlugin
     Bukkit.getServer().getPluginManager().registerEvents(flame, this);
     scoreboard = new ScoreBoard();
 
+    ArrayList<String> soullore = new ArrayList<String>();
+    soullore.add(ChatColor.GREEN + "Uncommon Weapon");
+    SoulRepeater soul = new SoulRepeater(ChatColor.GREEN + "" + ChatColor.BOLD + "SOULD REPEATER" , soullore , Material.GOLDEN_SWORD);
+    Bukkit.getServer().getPluginManager().registerEvents(soul, this);
+    scoreboard = new ScoreBoard();
+
     for (Player p: Bukkit.getOnlinePlayers()){
       //  p.sendMessage(Integer.toString(time_total_seconds));
         p.getInventory().addItem(flame.createWeapon());
+        p.getInventory().addItem(soul.createWeapon());
       }
+    
+      
 
     if(!Bukkit.getScheduler().isCurrentlyRunning(sched)) {
       sched = Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new Runnable() {
@@ -89,10 +98,7 @@ public class Plugin extends JavaPlugin
     while (time_total_seconds >= 1200){
       time_total_seconds-=1200;
     }
-    time_minecraft_minuites = time_total_seconds;
-    while (time_minecraft_minuites >= 60) {
-      time_minecraft_minuites-=60;
-    }
+    time_minecraft_minuites = time_total_seconds % 60;
     time_minecraft_hours = Math.floorDiv(time_total_seconds,60);
     for (World w: Bukkit.getServer().getWorlds()) {
       w.setTime((time_total_seconds+900)*20);

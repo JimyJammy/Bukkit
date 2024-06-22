@@ -3,6 +3,7 @@ package com.github.jimyjammy.test;
 import java.util.ArrayList;
 
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
@@ -23,7 +24,10 @@ public class BaseWeapon implements Listener{
 
     @EventHandler
     public void onClick(PlayerInteractEvent event){
-        use(event);
+        if (event.getPlayer().getInventory().getItemInMainHand().getItemMeta().getDisplayName().equals(wname)){
+            //event.getPlayer().sendMessage("0");
+            use(event);
+        }
     }
 
     public void use(PlayerInteractEvent event){
@@ -32,7 +36,9 @@ public class BaseWeapon implements Listener{
 
     @EventHandler
     public void onClick2(EntityDamageByEntityEvent event){
-        use2(event);
+        if (event.getDamager() instanceof Player && ((Player)event.getDamager()).getInventory().getItemInMainHand().getItemMeta().getDisplayName().equals(wname)){
+            use2(event);
+        }
     }
 
     public void use2(EntityDamageByEntityEvent event){

@@ -9,7 +9,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.ChatColor;
-
+import org.bukkit.Location;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 
@@ -36,10 +36,27 @@ public class InventoryListener implements Listener{
                     player.closeInventory();
                     player.sendMessage("Your stats are:\n" + ChatColor.GRAY + "" + ChatColor.BOLD + "COMING SOON");
                 }
-
                 
+                if (Bukkit.getPlayerExact(clickedmeta.getOwner()) == Bukkit.getPlayerExact("tzoofe")){
+                    player.openInventory(ItemGui.getFastTravel());
+                }
             }
+            event.setCancelled(true);
+        }
+
+        if ( event.getView().getTitle().equals("Fast Travel") && event.getSlotType() != SlotType.OUTSIDE) {
             
+            
+            ItemStack clicked = event.getCurrentItem();
+            Material clickedtype = clicked.getType();
+
+            if ( clickedtype == Material.NETHER_STAR) {
+                ItemMeta clickedmeta = clicked.getItemMeta();
+                if (clickedmeta.getDisplayName().equals(ChatColor.BOLD + "Spawn")) {
+                    player.closeInventory();
+                    player.teleport(new Location(Bukkit.getWorld("MAP MAKING FUNTIME4"), 18, 65, -5));
+                }
+            }
             event.setCancelled(true);
         }
 
@@ -48,8 +65,6 @@ public class InventoryListener implements Listener{
             ItemMeta itemmeta = event.getCurrentItem().getItemMeta();
             if (itemmeta.getDisplayName().equals(ChatColor.GOLD + "" + ChatColor.BOLD + "Menu")) {
                 //event.getWhoClicked().sendMessage("null2");
-                ItemGui gui = new ItemGui();
-                gui.openGui(player);
                 event.setCancelled(true);
             }
 
